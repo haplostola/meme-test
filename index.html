@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet">
+    <script defer src="script.js"></script>
+    <title>Document</title>
+
+</head>
+
+
+
+
+
+<body>
+
+
+
+    <div class="container">
+
+        <h4> Bowlers </h4>
+
+        <div id="BowlerList" class="column"></div>
+
+            <button class="create-bracket" onclick="createBrackets()"> Create Brackets  </button>  
+  
+  
+
+     <div id="test123">test</div>
+
+        <h4>Bracket 1</h4>
+        <div class="column">
+        <div id="BracketA"></div>
+
+        <h4>Bracket 2</h4>
+
+        <div id="BracketB"></div>
+
+        <h4>Bracket 3</h4>
+
+        <div id="BracketC"></div>
+
+        <h4>Bracket 4</h4>
+
+        <div id="BracketD"></div>
+        </div>
+
+
+    </div>
+</body>
+
+
+
+
+<script>
+
+var PPLperBracket = 8;
+
+const bowlers = [["Jennifer Cranfield",1,0],["Carl Gowans",1,0],["Thaddeus Pitts",1,0],["Kevin Payne",1,0],["Dion Cranfield",1,0],["Brenda Funches",2,0],["Bryant Funches",2,0],["Carla Funches",2,0],["Antoine Pollard",2,0],["Jake Maholovich",3,0],["Joe Padalino",3,0],["Eric Harry",3,0],["Bruce Person",3,0],["Brian McCarthy",3,0],["Zack Casey",3,0],["Jim Ptaszek",4,0],["Ron Laurin",4,0],["Jack Toepper",4,0],["Gregory Rogers",4,0],["Matt Schmeski",5,0],["James Archambeau",5,0],["Sean Crowley",5,0],["JrMike McAuliffe",5,0],["Richard Kaemerer",5,0],["Mark Marianovich",5,0],["SrMike McAuliffe",5,0],["John Wernicke",6,0],["Don Niego",6,0],["Tony Niego",6,0],["John Woodyatt",6,0],["Mike Scanlan",6,0],["Dave Berres",6,0],["Carl Rinaldi Jr..",7,0],["Ryne Smith",7,0],["Rich Fettig",7,0],["Carl Rinaldi Sr..",7,0],["Greg Rinaldi",7,0],["Anthony LaBanca",8,0],["Paschal Gianotti",8,0],["Joey LaBanca",8,0],["John Banasiak",8,0],["James Banasiak",8,0],["Mike Johnson",9,0],["Nicole Kanka",9,0],["Blake Papineau",9,0],["Joe Bogdanich",9,0],["Jim Johnson",9,0],["Beth Bogdanich",10,0],["Jim Bogdanich",10,0],["Andrew Lash",10,0],["Nick Oudin",10,0],["Nikki Gotsch",10,0],["Tracy Worst",10,0],["Dana Erickson",11,0],["Brian Wasag",11,0],["Natalie Bowman",11,0],["Ashley Finnegan",11,0],["Jake Ruzas",11,0],["Tim Gill",12,0],["Jeremy Ruzas",12,0],["Josh Goodwin",12,0],["Chris Ruzas",12,0],["Dominic Muzzaizelli",12,0],["Mitch Carlson",13,0],["Nick Cislo",13,0],["Dave Propp",13,0],["Ryan Utt",13,0],["Jack Carlson",13,0],["Michael Brotsch",14,0],["Nick Brotsch",14,0],["Joe Illichman",14,0],["Brian Aderman",14,0],["Kyle Dixon",14,0],["Michael Ward",15,0],["Matt Johnson",15,0],["Kyle Provencher",15,0],["Logan Remenar",15,0],["Shannon Culich",16,0],["Bryan Tuscher",16,0],["Kelly Tuscher",16,0],["Mike Culich",16,0],["Jim Duffy",16,0]];
+const bowlersNS = [["Jennifer Cranfield",1,1],["Carl Gowans",1,2],["Thaddeus Pitts",1,3],["Kevin Payne",1,4],["Dion Cranfield",1,5],["Brenda Funches",2,6],["Bryant Funches",2,7],["Carla Funches",2,8],["Antoine Pollard",2,9],["Jake Maholovich",3,10],["Joe Padalino",3,11],["Eric Harry",3,12],["Bruce Person",3,13],["Brian McCarthy",3,14],["Zack Casey",3,15],["Jim Ptaszek",4,16],["Ron Laurin",4,17],["Jack Toepper",4,18],["Gregory Rogers",4,19],["Matt Schmeski",5,20],["James Archambeau",5,21],["Sean Crowley",5,22],["JrMike McAuliffe",5,23],["Richard Kaemerer",5,24],["Mark Marianovich",5,25],["SrMike McAuliffe",5,26],["John Wernicke",6,27],["Don Niego",6,28],["Tony Niego",6,29],["John Woodyatt",6,30],["Mike Scanlan",6,31],["Dave Berres",6,32],["Carl Rinaldi Jr..",7,33],["Ryne Smith",7,34],["Rich Fettig",7,35],["Carl Rinaldi Sr..",7,36],["Greg Rinaldi",7,37],["Anthony LaBanca",8,38],["Paschal Gianotti",8,39],["Joey LaBanca",8,40],["John Banasiak",8,41],["James Banasiak",8,42],["Mike Johnson",9,43],["Nicole Kanka",9,44],["Blake Papineau",9,45],["Joe Bogdanich",9,46],["Jim Johnson",9,47],["Beth Bogdanich",10,48],["Jim Bogdanich",10,49],["Andrew Lash",10,50],["Nick Oudin",10,51],["Nikki Gotsch",10,52],["Tracy Worst",10,53],["Dana Erickson",11,54],["Brian Wasag",11,55],["Natalie Bowman",11,56],["Ashley Finnegan",11,57],["Jake Ruzas",11,58],["Tim Gill",12,59],["Jeremy Ruzas",12,60],["Josh Goodwin",12,61],["Chris Ruzas",12,62],["Dominic Muzzaizelli",12,63],["Mitch Carlson",13,64],["Nick Cislo",13,65],["Dave Propp",13,66],["Ryan Utt",13,67],["Jack Carlson",13,68],["Michael Brotsch",14,69],["Nick Brotsch",14,70],["Joe Illichman",14,71],["Brian Aderman",14,72],["Kyle Dixon",14,73],["Michael Ward",15,74],["Matt Johnson",15,75],["Kyle Provencher",15,76],["Logan Remenar",15,77],["Shannon Culich",16,78],["Bryan Tuscher",16,79],["Kelly Tuscher",16,80],["Mike Culich",16,81],["Jim Duffy",16,82]];
+const shuffledArray = bowlers.sort((a, b) => 0.5 - Math.random());
+
+var InBrackets = [];
+
+for(let i = 0; i < 82; i++){
+
+    document.getElementById("BowlerList").innerHTML +=
+
+    '<ul><li><label class="switch"> <input type="checkbox" id="bowlercheck'+String(bowlersNS[i][2])+'">'+'<span class="slider round"></span> </label>'+
+    "Team "+String(bowlersNS[i][1])+": "+String(bowlersNS[i][0])
+    +"</li></ul>"
+
+}
+
+for (let i = 0; i != 8; i++) {
+            document.getElementById("BracketA").innerHTML += "<list id=bowlerA"+String(i)+"> </list> <br>";
+            }
+for (let i = 8; i != 16; i++) {
+            document.getElementById("BracketB").innerHTML += "<list id=bowlerB"+String(i)+"> </list> <br>";
+            }
+for (let i = 16; i != 24; i++) {
+            document.getElementById("BracketC").innerHTML += "<list id=bowlerC"+String(i)+"> </list> <br>";
+            }
+for (let i = 24; i != 32; i++) {
+            document.getElementById("BracketD").innerHTML += "<list id=bowlerD"+String(i)+"> </list> <br>";
+            }
+
+
+function updateNumber(){
+
+    var InBrackets = [];
+
+        for(let i = 0; i < 82; i++){
+
+    var CurrentCheckbox = document.getElementById("bowlercheck"+String(bowlersNS[i][2]));
+        if(CurrentCheckbox.checked == true) { 
+            InBrackets.push([bowlersNS[i][0],bowlersNS[i][1],bowlersNS[i][2]]);
+                                             }
+        }
+
+    let InBracketsLength = InBrackets.length
+        document.getElementById("test123").innerHTML = InBracketsLength; 
+
+}
+
+
+function createBrackets(){
+    
+for (let i = 0; i != 8; i++) {
+            document.getElementById("BracketA").innerHTML = "";
+            } 
+for (let i = 8; i != 16; i++) {
+            document.getElementById("BracketB").innerHTML = "";
+            }
+for (let i = 16; i != 24; i++) {
+            document.getElementById("BracketC").innerHTML = "";
+            }
+for (let i = 24; i != 32; i++) {
+            document.getElementById("BracketD").innerHTML = "";
+            }
+            
+for (let i = 0; i != 8; i++) {
+            document.getElementById("BracketA").innerHTML += "<list id=bowlerA"+String(i)+"> </list> <br>";
+            }
+for (let i = 8; i != 16; i++) {
+            document.getElementById("BracketB").innerHTML += "<list id=bowlerB"+String(i)+"> </list> <br>";
+            }
+for (let i = 16; i != 24; i++) {
+            document.getElementById("BracketC").innerHTML += "<list id=bowlerC"+String(i)+"> </list> <br>";
+            }
+for (let i = 24; i != 32; i++) {
+            document.getElementById("BracketD").innerHTML += "<list id=bowlerD"+String(i)+"> </list> <br>";
+            }
+
+
+    var InBrackets = [];
+        for(let i = 0; i < 82; i++){
+            var CurrentCheckbox = document.getElementById("bowlercheck"+String(bowlersNS[i][2]));
+                if(CurrentCheckbox.checked == true) { 
+                                    InBrackets.push([bowlersNS[i][0],bowlersNS[i][1],bowlersNS[i][2]]);
+                                                     }
+                }
+        const shuffledArray2 = InBrackets.sort((a, b) => 0.5 - Math.random());
+        
+    
+        let InBracketsLength = InBrackets.length
+        document.getElementById("test123").innerHTML = InBracketsLength;           
+        for (let i = 0; i != 8; i++) {
+            document.getElementById("bowlerA"+String(i)).innerHTML = InBrackets[i][0]+"<sup> "+InBrackets[i][1]+"</sup>";
+            }
+
+        for (let i = 8; i != 16; i++) {
+            document.getElementById("bowlerB"+String(i)).innerHTML = InBrackets[i][0]+"<sup> "+InBrackets[i][1]+"</sup>";
+            }
+        for (let i = 16; i != 24; i++) {
+            document.getElementById("bowlerC"+String(i)).innerHTML = InBrackets[i][0]+"<sup> "+InBrackets[i][1]+"</sup>";
+            }
+        for (let i = 24; i != 32; i++) {
+            document.getElementById("bowlerD"+String(i)).innerHTML = InBrackets[i][0]+"<sup> "+InBrackets[i][1]+"</sup>";
+            }
+
+    }
+
+
+</script>
+
+</html>
